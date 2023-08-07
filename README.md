@@ -3,6 +3,9 @@ Given a reference and a user-inputted video, the files return a side-by-side com
 
 Start with start_here.py, download respective files
 
+Future Improvements: 2D pose -> occluded joints cause trouble and inaccuracies in joint angles
+
+
 # Packages
 
 Package                      Version

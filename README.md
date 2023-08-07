@@ -2,7 +2,7 @@
 Given a reference and a user-inputted video, the files return a side-by-side comparison video using the yolov7 pose estimation model.
 
 Start with start_here.py, download respective files
-Also needs yolov7 to be downloaded (mainly utils and the weights)
+Also needs yolov7 to be downloaded (mainly utils, models, and the weights)
 
 Future Improvements: 2D pose -> occluded joints cause trouble and inaccuracies in joint angles
 

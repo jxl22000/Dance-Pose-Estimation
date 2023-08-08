@@ -6,5 +6,9 @@ Start with start_here.py, download respective files
 
 In CLI: python start_here.py --video1 "video1.mp4" --video2 "video2.mp4", where "video1.mp4" is the user video and "video2.mp4" is the reference video to compare the two poses. 
 
+Video1 should be the "cover" of the song, and the algorithm will try to clip the beginning portion of video1 so the music aligns with video2. 
+
 # Future Improvements
-Future Improvements: 2D pose -> occluded joints cause trouble and inaccuracies in joint angles
+
+Occluded joints cause trouble and the camera's viewpoint may cause inaccuracies in joint angles. The algorithm can also only compress the first video. 
+

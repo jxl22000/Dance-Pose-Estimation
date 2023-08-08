@@ -1,6 +1,10 @@
 # Dance-Pose-Estimation
 Given a reference and a user-inputted video, the files return a side-by-side comparison video using the yolov7 pose estimation model. First, I synched the audio of the two files using librosa's cross similarity function, which lined up the music (assuming the music in the two files is the same). With OpenCV, I ran the yolo pose detection model on each frame and marked the joints as well as the error in each frame.
 
+
+https://github.com/jxl22000/Dance-Pose-Estimation/assets/54610090/762279f5-7616-45df-8b00-8bdc8a2ea371
+
+
 # Setup Notes
 Start with start_here.py, download respective files
 

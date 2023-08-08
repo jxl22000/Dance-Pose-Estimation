@@ -2,28 +2,28 @@ import math
 from moviepy.editor import *
 import librosa
 import matplotlib.pyplot as plt
+import os
 
 
-def audio(filename1, filename2, time):
+def audio(filename1, filename2):
 
     clip1 = AudioFileClip(filename1)
     print(clip1.duration)
-    if clip1.duration > time:
-        clip1 = clip1.subclip(0, time)
-    clip1.write_audiofile(filename1 + '.wav')
+    clip1.write_audiofile(os.path.splitext(filename1)[0] + '.wav')
 
     clip2 = AudioFileClip(filename2)
     print(clip2.duration)
-    if clip2.duration > time * 2:
-        clip2 = clip2.subclip(0, time * 2)
-    clip2.write_audiofile(filename2 + '.wav')
+    clip2.write_audiofile(os.path.splitext(filename2)[0] + '.wav')
 
     return clip1.filename, clip2.filename
 
 
-def matchClips(filename1, filename2):
+def matchClips(filename1, filename2, mirror1, mirror2):
 
     hop_length = 1024
+    filename1 = os.path.splitext(filename1)[0]
+    filename2 = os.path.splitext(filename2)[0]
+
     y_ref, sr1 = librosa.load(filename1 + '.wav')
     y_comp, sr2 = librosa.load(filename2 + '.wav')
 
@@ -112,22 +112,30 @@ def matchClips(filename1, filename2):
     #         minn = mean_squared_error(D2.T[i:D1.shape[1] + i], D1.T)
     #         index = i
 
-    clip1 = VideoFileClip(filename1)
+    clip1 = VideoFileClip(filename1 + '.mp4')
     time = AudioFileClip(filename1 + '.wav').duration
     start = index / xsim_aff.shape[0] * time
 
-    if AudioFileClip(filename1).duration > AudioFileClip(filename2).duration:
-        end = AudioFileClip(filename2).duration
+    if AudioFileClip(filename1 + '.wav').duration + start > AudioFileClip(filename2 + '.wav').duration:
+        end = AudioFileClip(filename2 + '.wav').duration + start
     else:
-        end = AudioFileClip(filename1).duration
+        end = AudioFileClip(filename1 + '.wav').duration
 
+    # print(start)
+    # print(end)
     clip1 = clip1.subclip(start, end)
-    clip2 = VideoFileClip(filename2)
-
+    clip2 = VideoFileClip(filename2 + '.mp4')
+    # print(clip1.duration)
+    # print(clip2.duration)
     if clip1.fps > clip2.fps:
         clip1 = clip1.set_fps(clip2.fps)
     else:
         clip2 = clip2.set_fps(clip1.fps)
+
+    if mirror1:
+        clip1 = clip1.fx(vfx.mirror_x)
+    if mirror2:
+        clip2 = clip2.fx(vfx.mirror_x)
 
     clip1.write_videofile(filename1 + 'edited.mp4')
     clip2.write_videofile(filename2 + 'edited.mp4')

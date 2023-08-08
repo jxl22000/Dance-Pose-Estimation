@@ -6,7 +6,10 @@ from torchvision import transforms
 import audio
 from utils.datasets import letterbox
 from utils.general import non_max_suppression_kpt
-from utils.plots import output_to_keypoint, plot_skeleton_kpts
+from utils.plots import output_to_keypoint
+from moviepy.editor import VideoFileClip, vfx
+import os
+
 
 # (B, G, R)
 green = (50, 255, 50)
@@ -101,7 +104,7 @@ def error(image, kpts, tup, color):
     cv2.circle(image, (int(x2), int(y2)), 5, color, cv2.FILLED)
 
 
-def start(video1, video2, threshold):
+def start(video1, video2, threshold, mirror1, mirror2):
 
     # attempt to match the audios together:
 
@@ -110,8 +113,8 @@ def start(video1, video2, threshold):
     hi = int(min(cap1.get(4), cap2.get(4)))
     wi = int(min(cap1.get(3), cap2.get(3)))
 
-    clip1, clip2 = audio.audio(video1, video2, time=15)
-    filename1, filename2, fps = audio.matchClips(clip1, clip2)
+    clip1, clip2 = audio.audio(video1, video2)
+    filename1, filename2, fps = audio.matchClips(clip1, clip2, mirror1, mirror2)
 
     if filename1 is None:
         print("error")

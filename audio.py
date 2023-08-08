@@ -50,7 +50,7 @@ def matchClips(filename1, filename2):
     fig.colorbar(imgsim, ax=ax[0], orientation='horizontal', ticks=[0, 1])
     fig.colorbar(imgaff, ax=ax[1], orientation='horizontal')
     fig.show()
-    plt.savefig("temp3.png")
+    plt.savefig("SimilarityMapping.png")
 
     # y, sr = librosa.load(filename1 + '.wav')
     # y = librosa.util.normalize(y)

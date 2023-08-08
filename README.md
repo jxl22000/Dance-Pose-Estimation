@@ -8,6 +8,12 @@ In CLI: python start_here.py --video1 "video1.mp4" --video2 "video2.mp4", where 
 
 Video1 should be the "cover" of the song, and the algorithm will try to clip the beginning portion of video1 so the music aligns with video2. 
 
+--threshold: If the joint angle is above this threshold, the joint will highlight as red. If it is above half of this threshold, it will highlight as yellow.
+--mirror1: mirror the first video
+--mirror2: mirror the second video
+
+The output will be in a file called 'output.mp4' which shows the two videos side-by-side with the pose estimation on each person.
+
 # Future Improvements
 
 Occluded joints cause trouble and the camera's viewpoint may cause inaccuracies in joint angles. The algorithm can also only compress the first video. 

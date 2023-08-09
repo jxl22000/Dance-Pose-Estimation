@@ -3,8 +3,6 @@ Given a reference and a user-inputted video, the files return a side-by-side com
 
 ![](https://github.com/jxl22000/Dance-Pose-Estimation/blob/main/PoseEstimationDemo.gif)
 
-<img src="https://github.com/jxl22000/Dance-Pose-Estimation/blob/main/PoseEstimationDemo.gif" alt="Databay showcase gif" title="Databay showcase gif" width="500"/>
-
 
 # Setup Notes
 Start with start_here.py, download respective files
